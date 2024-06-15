@@ -10,6 +10,18 @@ kubectl create ns platform
 helm --namespace platform install signoz signoz/signoz -f values.yaml
 ```
 
+## Configuração do service
+
+```sh
+kubectl edit svc -n platform signoz-otel-collector
+```
+
+## Configuração do ingress
+
+```sh
+kubectl edit ingres -n platform signoz-frontend
+```
+
 # English
 
 ## Steps to Setup SigNoz
