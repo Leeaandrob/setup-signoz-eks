@@ -1,0 +1,73 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    meta.helm.sh/release-name: signoz
+    meta.helm.sh/release-namespace: platform
+  creationTimestamp: "2024-06-07T18:39:29Z"
+  finalizers:
+  - service.kubernetes.io/load-balancer-cleanup
+  labels:
+    app.kubernetes.io/component: otel-collector
+    app.kubernetes.io/instance: signoz
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: signoz
+    app.kubernetes.io/version: 0.47.0
+    helm.sh/chart: signoz-0.43.0
+  name: signoz-otel-collector
+  namespace: platform
+  resourceVersion: "47923927"
+  uid: 2db5206e-9ae1-4dc3-b0e7-3c85aa47e921
+spec:
+  allocateLoadBalancerNodePorts: true
+  clusterIP: 10.100.116.239
+  clusterIPs:
+  - 10.100.116.239
+  externalTrafficPolicy: Cluster
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - name: jaeger-grpc
+    nodePort: 32338
+    port: 14250
+    protocol: TCP
+    targetPort: jaeger-grpc
+  - name: jaeger-thrift
+    nodePort: 31539
+    port: 14268
+    protocol: TCP
+    targetPort: jaeger-thrift
+  - name: logsheroku
+    nodePort: 31373
+    port: 8081
+    protocol: TCP
+    targetPort: logsheroku
+  - name: logsjson
+    nodePort: 30473
+    port: 8082
+    protocol: TCP
+    targetPort: logsjson
+  - name: metrics
+    nodePort: 32725
+    port: 8888
+    protocol: TCP
+    targetPort: metrics
+  - name: otlp
+    nodePort: 32110
+    port: 4317
+    protocol: TCP
+    targetPort: otlp
+  - name: otlp-http
+    nodePort: 31223
+    port: 4318
+    protocol: TCP
+    targetPort: otlp-http
+  selector:
+    app.kubernetes.io/component: otel-collector
+    app.kubernetes.io/instance: signoz
+    app.kubernetes.io/name: signoz
+  sessionAffinity: None
+  type: LoadBalancer
+status:
