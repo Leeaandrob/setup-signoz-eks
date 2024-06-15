@@ -27,3 +27,9 @@ helm --namespace platform install signoz signoz/signoz -f values.yaml
 ```sh
 kubectl edit svc -n platform signoz-otel-collector
 ```
+
+## Ingress setup
+
+```sh
+kubectl edit ingres -n platform signoz-frontend
+```
